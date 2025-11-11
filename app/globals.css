@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+:root {
+  /* PancitoGames Colors - Main Brand */
+  --pancito-primary: #ff6b35; /* Naranja vibrante */
+  --pancito-secondary: #f7931e; /* Naranja dorado */
+  --pancito-accent: #ffc107; /* Amarillo */
+  --pancito-dark: #2c3e50; /* Azul oscuro */
+  --pancito-light: #ecf0f1; /* Gris claro */
+  
+  /* Memory History Colors - Vintage/Copper Theme */
+  --memory-copper: #b87333; /* Cobre */
+  --memory-bronze: #cd7f32; /* Bronce */
+  --memory-gold: #d4af37; /* Dorado antiguo */
+  --memory-brown: #8b4513; /* Marrón */
+  --memory-cream: #f5f5dc; /* Beige/Crema */
+  --memory-parchment: #f0e68c; /* Pergamino */
+  
+  /* General */
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-pancito-primary: var(--pancito-primary);
+  --color-pancito-secondary: var(--pancito-secondary);
+  --color-pancito-accent: var(--pancito-accent);
+  --color-pancito-dark: var(--pancito-dark);
+  --color-pancito-light: var(--pancito-light);
+  --color-memory-copper: var(--memory-copper);
+  --color-memory-bronze: var(--memory-bronze);
+  --color-memory-gold: var(--memory-gold);
+  --color-memory-brown: var(--memory-brown);
+  --color-memory-cream: var(--memory-cream);
+  --color-memory-parchment: var(--memory-parchment);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Utility classes */
+.text-balance {
+  text-wrap: balance;
+}
