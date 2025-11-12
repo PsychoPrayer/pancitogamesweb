@@ -1,97 +1,165 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
+import { useLanguage } from './LanguageSwitcher';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const language = useLanguage();
+
+  const copy = {
+    en: {
+      description:
+        'We craft story-driven games that preserve collective memory through play.',
+      founded: 'Founded in 2025 • Based in USA',
+      quickLinks: 'Quick Links',
+      legal: 'Legal',
+      follow: 'Follow Us',
+      comingSoon: '(Coming Soon)',
+      home: 'Home',
+      games: 'Collection',
+      about: 'About',
+      contact: 'Contact',
+      privacy: 'Privacy Policy',
+      terms: 'Terms & Conditions',
+      copyright: `© ${currentYear} PancitoGames. All rights reserved.`,
+    },
+    es: {
+      description:
+        'Creamos juegos con historias que resguardan la memoria colectiva a través del juego.',
+      founded: 'Fundado en 2025 • Con base en EE. UU.',
+      quickLinks: 'Enlaces',
+      legal: 'Legal',
+      follow: 'Síguenos',
+      comingSoon: '(Próximamente)',
+      home: 'Inicio',
+      games: 'Colección',
+      about: 'Acerca',
+      contact: 'Contacto',
+      privacy: 'Política de Privacidad',
+      terms: 'Términos y Condiciones',
+      copyright: `© ${currentYear} PancitoGames. Todos los derechos reservados.`,
+    },
+  } as const;
+
+  const texts = copy[language];
 
   return (
-    <footer className="bg-[var(--pancito-dark)] text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer className="border-t border-[var(--ink-soft)] bg-[var(--ink-deep)] text-[var(--parchment-light)]">
+      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
           {/* Logo & Description */}
-          <div className="col-span-1 md:col-span-2">
-            <Link href="/" className="flex items-center space-x-3 mb-4">
+          <div className="md:col-span-2 space-y-4">
+            <Link href="/" className="flex items-center gap-3">
               <Image
                 src="/LogoPancito.jpg"
                 alt="PancitoGames Logo"
-                width={50}
-                height={50}
-                className="rounded-full"
+                width={52}
+                height={52}
+                className="rounded-full border border-[var(--parchment-light)]/30 shadow-sm"
               />
-              <span className="text-2xl font-bold">PancitoGames</span>
+              <div>
+                <span className="font-heading text-2xl font-semibold text-[var(--parchment)]">
+                  PancitoGames
+                </span>
+                <p className="text-xs uppercase tracking-[0.4em] text-[var(--parchment-light)]/70">
+                  {language === 'en' ? 'Since 2025' : 'Desde 2025'}
+                </p>
+              </div>
             </Link>
-            <p className="text-gray-300 max-w-md">
-              Creating memorable gaming experiences that educate, entertain, and celebrate the cultural richness of Latin America.
+            <p className="max-w-md text-[var(--parchment-light)]/80">
+              {texts.description}
             </p>
-            <p className="text-gray-400 text-sm mt-4">
-              Founded in 2016 • Based in USA
+            <p className="text-sm text-[var(--parchment-light)]/60">
+              {texts.founded}
             </p>
           </div>
 
           {/* Quick Links */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
+          <div className="space-y-4">
+            <h3 className="font-heading text-lg font-semibold text-[var(--parchment)]">
+              {texts.quickLinks}
+            </h3>
+            <ul className="space-y-2 text-sm font-medium">
               <li>
-                <Link href="/" className="text-gray-300 hover:text-[var(--pancito-accent)] transition-colors">
-                  Home
+                <Link
+                  href="/"
+                  className="text-[var(--parchment-light)]/80 transition-colors hover:text-[var(--accent-soft)]"
+                >
+                  {texts.home}
                 </Link>
               </li>
               <li>
-                <Link href="/#games" className="text-gray-300 hover:text-[var(--pancito-accent)] transition-colors">
-                  Games
+                <Link
+                  href="/#games"
+                  className="text-[var(--parchment-light)]/80 transition-colors hover:text-[var(--accent-soft)]"
+                >
+                  {texts.games}
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-gray-300 hover:text-[var(--pancito-accent)] transition-colors">
-                  About Us
+                <Link
+                  href="/about"
+                  className="text-[var(--parchment-light)]/80 transition-colors hover:text-[var(--accent-soft)]"
+                >
+                  {texts.about}
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-gray-300 hover:text-[var(--pancito-accent)] transition-colors">
-                  Contact
+                <Link
+                  href="/contact"
+                  className="text-[var(--parchment-light)]/80 transition-colors hover:text-[var(--accent-soft)]"
+                >
+                  {texts.contact}
                 </Link>
               </li>
             </ul>
           </div>
 
           {/* Legal */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Legal</h3>
-            <ul className="space-y-2">
+          <div className="space-y-4">
+            <h3 className="font-heading text-lg font-semibold text-[var(--parchment)]">
+              {texts.legal}
+            </h3>
+            <ul className="space-y-2 text-sm font-medium">
               <li>
-                <Link href="/privacy" className="text-gray-300 hover:text-[var(--pancito-accent)] transition-colors">
-                  Privacy Policy
+                <Link
+                  href="/privacy"
+                  className="text-[var(--parchment-light)]/80 transition-colors hover:text-[var(--accent-soft)]"
+                >
+                  {texts.privacy}
                 </Link>
               </li>
               <li>
-                <Link href="/terms" className="text-gray-300 hover:text-[var(--pancito-accent)] transition-colors">
-                  Terms & Conditions
+                <Link
+                  href="/terms"
+                  className="text-[var(--parchment-light)]/80 transition-colors hover:text-[var(--accent-soft)]"
+                >
+                  {texts.terms}
                 </Link>
               </li>
             </ul>
 
-            {/* Social Media (preparado para futuro) */}
-            <div className="mt-6">
-              <h3 className="text-lg font-semibold mb-4">Follow Us</h3>
-              <div className="flex space-x-4">
-                {/* Icons preparados para redes sociales */}
-                <span className="text-gray-500 text-sm">(Coming Soon)</span>
+            {/* Social Media (placeholder) */}
+            <div className="pt-4">
+              <h3 className="font-heading text-lg font-semibold text-[var(--parchment)]">
+                {texts.follow}
+              </h3>
+              <div className="text-sm text-[var(--parchment-light)]/60">
+                {texts.comingSoon}
               </div>
             </div>
           </div>
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-gray-700 mt-8 pt-8 text-center">
-          <p className="text-gray-400 text-sm">
-            © {currentYear} PancitoGames. All rights reserved.
+        <div className="mt-10 border-t border-[var(--parchment-light)]/20 pt-8 text-center">
+          <p className="text-xs uppercase tracking-[0.4em] text-[var(--parchment-light)]/60">
+            {texts.copyright}
           </p>
         </div>
       </div>
     </footer>
   );
 }
-
-
-

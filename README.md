@@ -139,14 +139,14 @@ Edit `/app/globals.css` to change color variables:
 
 - **Email:** hi@pancitogames.com
 - **Website:** [pancitogames.com](https://pancitogames.com)
-- **Founded:** 2016
+- **Founded:** 2025
 - **Location:** United States
 
 ---
 
 ## 📜 License
 
-© 2016-2024 PancitoGames. All rights reserved.
+© 2025 PancitoGames. All rights reserved.
 
 ---
 

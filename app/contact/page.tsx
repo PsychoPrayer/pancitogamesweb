@@ -1,257 +1,347 @@
 'use client';
 
 import { useState } from 'react';
-import type { Metadata } from 'next';
+import { useLanguage } from '../components/LanguageSwitcher';
+
+type FormStatus = 'idle' | 'sending' | 'sent' | 'error';
 
 export default function ContactPage() {
+  const language = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
     message: '',
   });
+  const [status, setStatus] = useState<FormStatus>('idle');
 
-  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+  const copy = {
+    en: {
+      heroTitle: 'Write to PancitoGames',
+      heroSubtitle:
+        'Tell us about your project, your classroom, or the stories you want to preserve. We are listening.',
+      formTitle: 'Send us a message',
+      labels: {
+        name: 'Name *',
+        email: 'Email *',
+        subject: 'Subject *',
+        message: 'Message *',
+      },
+      placeholders: {
+        name: 'Your name',
+        email: 'your.email@example.com',
+        subject: 'How can we help?',
+        message: 'Share your idea, collaboration request, or feedback...',
+      },
+      submit: 'Send message',
+      sending: 'Sending...',
+      sent: 'Sent! ✓',
+      thanks: 'Thank you! We will get back to you soon.',
+      error: 'Oops! Something went wrong. Please try again.',
+      infoTitle: 'Get in touch',
+      emailLabel: 'Email',
+      emailValue: 'hi@pancitogames.com',
+      locationLabel: 'Location',
+      locationValue: 'United States',
+      founded: 'Founded in 2025',
+      socialLabel: 'Social',
+      socialNote: 'We are curating our networks—coming soon!',
+      businessTitle: 'Business & partnerships',
+      businessText:
+        'For collaborations, press, or educational projects, write to our inbox and we will schedule a call.',
+      faqTitle: 'Frequently asked questions',
+      faq: [
+        {
+          question: 'When will Memory History be released?',
+          answer:
+            'Memory History is in active development. Join our mailing list on the game page to be notified when the beta opens.',
+        },
+        {
+          question: 'Which platforms will support your games?',
+          answer:
+            'We develop for Android first and bring the experience to iOS shortly after. Additional platforms will follow community demand.',
+        },
+        {
+          question: 'Are you creating more games beyond Memory History?',
+          answer:
+            'Absolutely. We are prototyping new albums that explore histories from different regions across the Americas.',
+        },
+      ],
+    },
+    es: {
+      heroTitle: 'Escríbenos a PancitoGames',
+      heroSubtitle:
+        'Cuéntanos sobre tu proyecto, tu aula o las historias que quieres preservar. Estamos atentos.',
+      formTitle: 'Envíanos un mensaje',
+      labels: {
+        name: 'Nombre *',
+        email: 'Correo *',
+        subject: 'Asunto *',
+        message: 'Mensaje *',
+      },
+      placeholders: {
+        name: 'Tu nombre',
+        email: 'tu.correo@ejemplo.com',
+        subject: '¿Cómo podemos ayudarte?',
+        message: 'Comparte tu idea, solicitud de colaboración o comentarios...',
+      },
+      submit: 'Enviar mensaje',
+      sending: 'Enviando...',
+      sent: '¡Enviado! ✓',
+      thanks: '¡Gracias! Muy pronto nos pondremos en contacto.',
+      error: 'Ups, algo salió mal. Intenta nuevamente.',
+      infoTitle: 'Ponte en contacto',
+      emailLabel: 'Correo',
+      emailValue: 'hi@pancitogames.com',
+      locationLabel: 'Ubicación',
+      locationValue: 'Estados Unidos',
+      founded: 'Fundado en 2025',
+      socialLabel: 'Redes',
+      socialNote: 'Estamos curando nuestras redes — ¡muy pronto!',
+      businessTitle: 'Negocios y alianzas',
+      businessText:
+        'Para colaboraciones, prensa o proyectos educativos, escríbenos y agendamos una llamada.',
+      faqTitle: 'Preguntas frecuentes',
+      faq: [
+        {
+          question: '¿Cuándo se lanzará Memory History?',
+          answer:
+            'Memory History está en desarrollo activo. Únete a nuestra lista en la página del juego para enterarte cuando abra la beta.',
+        },
+        {
+          question: '¿En qué plataformas estarán disponibles sus juegos?',
+          answer:
+            'Desarrollamos primero para Android y llevamos la experiencia a iOS poco después. Sumaremos otras plataformas según la comunidad.',
+        },
+        {
+          question: '¿Están creando más juegos además de Memory History?',
+          answer:
+            'Claro que sí. Estamos prototipando nuevos álbumes que exploran historias de distintas regiones de las Américas.',
+        },
+      ],
+    },
+  } as const;
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus('sending');
+  const text = copy[language];
 
-    // TODO: Implement actual form submission logic
-    // For now, just simulate a submission
-    setTimeout(() => {
-      console.log('Form submitted:', formData);
-      setStatus('sent');
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      
-      // Reset status after 3 seconds
-      setTimeout(() => setStatus('idle'), 3000);
-    }, 1000);
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = event.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setStatus('sending');
+
+    try {
+      await new Promise<void>((resolve) => {
+        setTimeout(() => resolve(), 900);
+      });
+      setStatus('sent');
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: '',
+      });
+      setTimeout(() => setStatus('idle'), 3000);
+    } catch (error) {
+      console.error(error);
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 3000);
+    }
   };
 
   return (
-    <div className="bg-white min-h-screen">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-[var(--pancito-primary)] to-[var(--pancito-secondary)] text-white py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Contact Us</h1>
-          <p className="text-xl text-white/90">
-            Have questions, suggestions, or just want to say hello? We&apos;d love to hear from you!
+    <div className="relative overflow-hidden">
+      <section className="relative px-4 py-24 sm:px-6 lg:px-8">
+        <div className="absolute inset-0 -z-10 opacity-60 blur-3xl">
+          <div className="absolute inset-0 bg-gradient-to-tr from-[var(--watercolor-sky)] via-transparent to-[var(--watercolor-sunset)]" />
+        </div>
+        <div className="mx-auto max-w-4xl text-center">
+          <p className="font-heading text-xs uppercase tracking-[0.5em] text-[var(--ink-muted)]">
+            PancitoGames
           </p>
+          <h1 className="mt-4 font-heading text-4xl text-[var(--ink-deep)] sm:text-5xl">
+            {text.heroTitle}
+          </h1>
+          <p className="mt-6 text-lg text-[var(--ink-muted)]">{text.heroSubtitle}</p>
         </div>
       </section>
 
-      {/* Contact Form & Info */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12">
-            {/* Contact Form */}
-            <div>
-              <h2 className="text-3xl font-bold mb-6 text-[var(--pancito-dark)]">Send us a Message</h2>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                    Name *
-                  </label>
+      <section className="relative px-4 pb-24 sm:px-6 lg:px-8">
+        <div className="absolute inset-0 -z-10 opacity-60 blur-3xl">
+          <div className="absolute inset-0 bg-gradient-to-br from-[var(--watercolor-forest)] via-transparent to-[var(--watercolor-sky)]" />
+        </div>
+        <div className="mx-auto max-w-6xl rounded-[3rem] border border-[var(--ink-soft)] bg-[var(--parchment-card)] p-10 shadow-[0_30px_60px_-20px_rgba(34,23,18,0.35)]">
+          <div className="grid gap-10 md:grid-cols-[1.2fr_0.8fr]">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <h2 className="font-heading text-2xl text-[var(--ink-deep)]">
+                {text.formTitle}
+              </h2>
+              <div className="grid gap-4 md:grid-cols-2">
+                <label className="flex flex-col gap-2">
+                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--ink-muted)]">
+                    {text.labels.name}
+                  </span>
                   <input
                     type="text"
-                    id="name"
                     name="name"
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--pancito-primary)] focus:border-transparent outline-none transition"
-                    placeholder="Your name"
+                    placeholder={text.placeholders.name}
+                    className="rounded-xl border border-[var(--ink-soft)] bg-[var(--parchment)] px-4 py-3 text-sm text-[var(--ink)] shadow-sm outline-none transition focus:border-[var(--accent-deep)] focus:ring-2 focus:ring-[var(--accent-soft)]/70"
                   />
-                </div>
-
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                    Email *
-                  </label>
+                </label>
+                <label className="flex flex-col gap-2">
+                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--ink-muted)]">
+                    {text.labels.email}
+                  </span>
                   <input
                     type="email"
-                    id="email"
                     name="email"
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--pancito-primary)] focus:border-transparent outline-none transition"
-                    placeholder="your.email@example.com"
+                    placeholder={text.placeholders.email}
+                    className="rounded-xl border border-[var(--ink-soft)] bg-[var(--parchment)] px-4 py-3 text-sm text-[var(--ink)] shadow-sm outline-none transition focus:border-[var(--accent-deep)] focus:ring-2 focus:ring-[var(--accent-soft)]/70"
                   />
-                </div>
+                </label>
+              </div>
+              <label className="flex flex-col gap-2">
+                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--ink-muted)]">
+                  {text.labels.subject}
+                </span>
+                <input
+                  type="text"
+                  name="subject"
+                  required
+                  value={formData.subject}
+                  onChange={handleChange}
+                  placeholder={text.placeholders.subject}
+                  className="rounded-xl border border-[var(--ink-soft)] bg-[var(--parchment)] px-4 py-3 text-sm text-[var(--ink)] shadow-sm outline-none transition focus:border-[var(--accent-deep)] focus:ring-2 focus:ring-[var(--accent-soft)]/70"
+                />
+              </label>
+              <label className="flex flex-col gap-2">
+                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--ink-muted)]">
+                  {text.labels.message}
+                </span>
+                <textarea
+                  name="message"
+                  required
+                  rows={6}
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder={text.placeholders.message}
+                  className="resize-none rounded-xl border border-[var(--ink-soft)] bg-[var(--parchment)] px-4 py-3 text-sm text-[var(--ink)] shadow-sm outline-none transition focus:border-[var(--accent-deep)] focus:ring-2 focus:ring-[var(--accent-soft)]/70"
+                />
+              </label>
+              <button
+                type="submit"
+                disabled={status === 'sending'}
+                className="w-full rounded-full border border-[var(--ink-soft)] bg-[var(--accent-soft)] px-6 py-3 text-sm font-semibold text-[var(--ink-deep)] shadow-sm transition hover:bg-[var(--accent-deep)] hover:text-[var(--parchment-light)] disabled:opacity-60"
+              >
+                {status === 'sending'
+                  ? text.sending
+                  : status === 'sent'
+                    ? text.sent
+                    : text.submit}
+              </button>
+              {status === 'sent' && (
+                <p className="text-center text-sm font-semibold text-emerald-700">
+                  {text.thanks}
+                </p>
+              )}
+              {status === 'error' && (
+                <p className="text-center text-sm font-semibold text-red-600">
+                  {text.error}
+                </p>
+              )}
+            </form>
 
+            <aside className="space-y-8 rounded-[2rem] border border-[var(--ink-soft)] bg-[var(--parchment)] p-8">
+              <h2 className="font-heading text-xl text-[var(--ink-deep)]">
+                {text.infoTitle}
+              </h2>
+              <div className="space-y-6 text-sm text-[var(--ink-muted)]">
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                    Subject *
-                  </label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    required
-                    value={formData.subject}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--pancito-primary)] focus:border-transparent outline-none transition"
-                    placeholder="What is this about?"
-                  />
+                  <p className="font-semibold uppercase tracking-[0.2em] text-[var(--ink-muted)]">
+                    {text.emailLabel}
+                  </p>
+                  <a
+                    href={`mailto:${text.emailValue}`}
+                    className="mt-1 inline-flex text-[var(--accent-deep)] hover:underline"
+                  >
+                    {text.emailValue}
+                  </a>
                 </div>
-
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                    Message *
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    required
-                    rows={6}
-                    value={formData.message}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--pancito-primary)] focus:border-transparent outline-none transition resize-none"
-                    placeholder="Tell us more..."
-                  />
+                  <p className="font-semibold uppercase tracking-[0.2em] text-[var(--ink-muted)]">
+                    {text.locationLabel}
+                  </p>
+                  <p className="mt-1 text-[var(--ink)]">{text.locationValue}</p>
+                  <p className="text-xs uppercase tracking-[0.3em] text-[var(--ink-muted)]/70">
+                    {text.founded}
+                  </p>
                 </div>
-
-                <button
-                  type="submit"
-                  disabled={status === 'sending'}
-                  className="w-full bg-[var(--pancito-primary)] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[var(--pancito-secondary)] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                <div>
+                  <p className="font-semibold uppercase tracking-[0.2em] text-[var(--ink-muted)]">
+                    {text.socialLabel}
+                  </p>
+                  <p className="mt-1 text-[var(--ink-muted)]">
+                    {text.socialNote}
+                  </p>
+                </div>
+              </div>
+              <div className="rounded-[1.5rem] border border-[var(--ink-soft)] bg-[var(--parchment-card)]/80 p-6 text-sm text-[var(--ink-muted)] shadow-inner">
+                <h3 className="font-heading text-lg text-[var(--ink-deep)]">
+                  {text.businessTitle}
+                </h3>
+                <p className="mt-3">{text.businessText}</p>
+                <a
+                  href={`mailto:${text.emailValue}`}
+                  className="mt-4 inline-flex text-sm font-semibold text-[var(--accent-deep)] hover:underline"
                 >
-                  {status === 'sending' ? 'Sending...' : status === 'sent' ? 'Sent! ✓' : 'Send Message'}
-                </button>
-
-                {status === 'sent' && (
-                  <p className="text-green-600 text-center">Thank you! We&apos;ll get back to you soon.</p>
-                )}
-
-                {status === 'error' && (
-                  <p className="text-red-600 text-center">Oops! Something went wrong. Please try again.</p>
-                )}
-              </form>
-            </div>
-
-            {/* Contact Information */}
-            <div>
-              <h2 className="text-3xl font-bold mb-6 text-[var(--pancito-dark)]">Get in Touch</h2>
-              
-              <div className="space-y-8">
-                {/* Email */}
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 bg-[var(--pancito-light)] p-3 rounded-lg">
-                    <svg className="w-6 h-6 text-[var(--pancito-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-lg text-gray-900 mb-1">Email</h3>
-                    <a href="mailto:hi@pancitogames.com" className="text-[var(--pancito-primary)] hover:underline">
-                      hi@pancitogames.com
-                    </a>
-                  </div>
-                </div>
-
-                {/* Location */}
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 bg-[var(--pancito-light)] p-3 rounded-lg">
-                    <svg className="w-6 h-6 text-[var(--pancito-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-lg text-gray-900 mb-1">Location</h3>
-                    <p className="text-gray-700">United States</p>
-                    <p className="text-gray-500 text-sm">Founded in 2016</p>
-                  </div>
-                </div>
-
-                {/* Social Media (Placeholder) */}
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 bg-[var(--pancito-light)] p-3 rounded-lg">
-                    <svg className="w-6 h-6 text-[var(--pancito-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-lg text-gray-900 mb-1">Social Media</h3>
-                    <p className="text-gray-500 text-sm">Coming Soon!</p>
-                    <div className="flex space-x-3 mt-2">
-                      <span className="text-gray-400">Instagram</span>
-                      <span className="text-gray-400">•</span>
-                      <span className="text-gray-400">Twitter</span>
-                      <span className="text-gray-400">•</span>
-                      <span className="text-gray-400">TikTok</span>
-                    </div>
-                  </div>
-                </div>
+                  {text.emailValue}
+                </a>
               </div>
-
-              {/* Additional Info Box */}
-              <div className="mt-8 bg-[var(--pancito-light)] p-6 rounded-lg">
-                <h3 className="font-semibold text-lg text-gray-900 mb-3">Business Inquiries</h3>
-                <p className="text-gray-700 mb-4">
-                  Interested in partnerships, press inquiries, or collaboration opportunities?
-                </p>
-                <p className="text-sm text-gray-600">
-                  Please email us at{' '}
-                  <a href="mailto:hi@pancitogames.com" className="text-[var(--pancito-primary)] hover:underline font-semibold">
-                    hi@pancitogames.com
-                  </a>{' '}
-                  with your proposal.
-                </p>
-              </div>
-            </div>
+            </aside>
           </div>
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold mb-8 text-center text-[var(--pancito-dark)]">
-            Frequently Asked Questions
+      <section className="relative px-4 pb-24 sm:px-6 lg:px-8">
+        <div className="absolute inset-0 -z-10 opacity-55 blur-3xl">
+          <div className="absolute inset-0 bg-gradient-to-r from-[var(--watercolor-sky)] via-transparent to-[var(--watercolor-sunset)]" />
+        </div>
+        <div className="mx-auto max-w-5xl space-y-8 rounded-[2.5rem] border border-[var(--ink-soft)] bg-[var(--parchment)] p-10 text-center shadow-[0_30px_50px_-20px_rgba(34,23,18,0.3)]">
+          <h2 className="font-heading text-3xl text-[var(--ink-deep)]">
+            {text.faqTitle}
           </h2>
-          <div className="space-y-6">
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <h3 className="font-semibold text-lg text-gray-900 mb-2">
-                When will Memory History be released?
-              </h3>
-              <p className="text-gray-700">
-                Memory History is currently in development. We&apos;ll announce the beta release date soon. Sign up on the Memory History page to be notified!
-              </p>
-            </div>
-
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <h3 className="font-semibold text-lg text-gray-900 mb-2">
-                What platforms will Memory History be available on?
-              </h3>
-              <p className="text-gray-700">
-                Memory History will be available on Android first, with iOS coming shortly after.
-              </p>
-            </div>
-
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <h3 className="font-semibold text-lg text-gray-900 mb-2">
-                Are you planning to release more games?
-              </h3>
-              <p className="text-gray-700">
-                Yes! Memory History is just the beginning. We have several educational games in the pipeline celebrating different aspects of Latin American culture.
-              </p>
-            </div>
+          <div className="space-y-6 text-left">
+            {text.faq.map((item) => (
+              <div
+                key={item.question}
+                className="rounded-[1.5rem] border border-[var(--ink-soft)] bg-[var(--parchment-card)] p-6 shadow-sm"
+              >
+                <h3 className="font-heading text-lg text-[var(--ink-deep)]">
+                  {item.question}
+                </h3>
+                <p className="mt-2 text-sm text-[var(--ink-muted)]">
+                  {item.answer}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
     </div>
   );
 }
-
-
 

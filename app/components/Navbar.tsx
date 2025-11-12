@@ -3,92 +3,123 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
-import LanguageSwitcher from './LanguageSwitcher';
+import LanguageSwitcher, { useLanguage } from './LanguageSwitcher';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const language = useLanguage();
+
+  const copy = {
+    en: {
+      brand: 'PancitoGames',
+      links: {
+        home: 'Home',
+        games: 'Collection',
+        about: 'About',
+        contact: 'Contact',
+      },
+      tagline: 'Interactive Histories',
+    },
+    es: {
+      brand: 'PancitoGames',
+      links: {
+        home: 'Inicio',
+        games: 'Colección',
+        about: 'Acerca',
+        contact: 'Contacto',
+      },
+      tagline: 'Historias Interactivas',
+    },
+  } as const;
+
+  const labels = copy[language];
 
   const navigation = [
-    { name: 'Home', href: '/' },
-    { name: 'Games', href: '/#games' },
-    { name: 'About', href: '/about' },
-    { name: 'Contact', href: '/contact' },
+    { name: labels.links.home, href: '/' },
+    { name: labels.links.games, href: '/#games' },
+    { name: labels.links.about, href: '/about' },
+    { name: labels.links.contact, href: '/contact' },
   ];
 
   return (
-    <nav className="bg-white shadow-md sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+    <nav className="sticky top-0 z-50 border-b border-[var(--ink-soft)] bg-[var(--parchment-overlay)]/95 backdrop-blur-md">
+      <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center gap-4">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3">
+          <Link href="/" className="flex items-center gap-3">
             <Image
               src="/LogoPancito.jpg"
               alt="PancitoGames Logo"
-              width={40}
-              height={40}
-              className="rounded-full"
+              width={44}
+              height={44}
+              className="rounded-full border border-[var(--ink-soft)] shadow-sm"
             />
-            <span className="text-xl font-bold text-[var(--pancito-dark)]">
-              PancitoGames
+            <span className="font-heading text-2xl font-semibold text-[var(--ink)] drop-shadow-sm">
+              {labels.brand}
             </span>
           </Link>
+        </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+        {/* Desktop Navigation */}
+        <div className="hidden items-center gap-8 md:flex">
+          <span className="font-heading text-xs uppercase tracking-[0.4em] text-[var(--ink-muted)]">
+            {labels.tagline}
+          </span>
+          <div className="flex items-center gap-6 rounded-full border border-[var(--ink-soft)] bg-[var(--parchment-card)] px-6 py-2 shadow-sm">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-gray-700 hover:text-[var(--pancito-primary)] transition-colors font-medium"
+                className="text-sm font-semibold text-[var(--ink)] transition-colors hover:text-[var(--accent-deep)]"
               >
                 {item.name}
               </Link>
             ))}
-            <LanguageSwitcher />
           </div>
-
-          {/* Mobile menu button */}
-          <button
-            type="button"
-            className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:bg-gray-100"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            <svg
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              {mobileMenuOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              )}
-            </svg>
-          </button>
+          <LanguageSwitcher />
         </div>
+
+        {/* Mobile menu button */}
+        <button
+          type="button"
+          className="inline-flex items-center justify-center rounded-full border border-[var(--ink-soft)] bg-[var(--parchment-card)] p-2 text-[var(--ink)] shadow-sm transition hover:bg-[var(--parchment)] md:hidden"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          <svg
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            {mobileMenuOpen ? (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            ) : (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            )}
+          </svg>
+        </button>
       </div>
 
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-gray-200">
-          <div className="px-2 pt-2 pb-3 space-y-1">
+        <div className="border-t border-[var(--ink-soft)] bg-[var(--parchment-overlay)] md:hidden">
+          <div className="space-y-1 px-4 pb-4 pt-2">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-[var(--pancito-primary)]"
+                className="block rounded-lg px-3 py-2 text-base font-semibold text-[var(--ink)] transition-colors hover:bg-[var(--parchment)]"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.name}
