@@ -27,11 +27,15 @@ export type Juego = {
   incrustar: boolean;
   controles?: Texto;
   destacado?: boolean;
+  /** true para no mostrarlo en la web (sin borrar sus datos). */
+  oculto?: boolean;
+  /** Enlace opcional a una página con más información. */
+  masInfo?: string;
   capturas: string[];
   avances: Avance[];
 };
 
-export const juegos = datos.juegos as Juego[];
+export const juegos = (datos.juegos as Juego[]).filter((juego) => !juego.oculto);
 
 export function getJuego(id: string) {
   return juegos.find((juego) => juego.id === id);

@@ -11,8 +11,8 @@ No hace falta tocar código para añadir juegos, avances o carátulas.
 | `/juegos/<id>` | Página de cada juego: reproductor, descripción, ficha y avances |
 | `/memory-history`, `/privacy`, `/terms`, `/about`, `/contact` | Se mantienen igual (las tiendas enlazan a privacidad y términos) |
 
-Al hacer clic en una carátula se abre `/juegos/<id>?jugar=1` y el juego arranca directamente
-dentro de la página (cargando su link de Vercel en un `iframe`).
+Al hacer clic en una carátula se abre la escena del juego (`/juegos/<id>`): carátula grande, descripción y
+un botón **Jugar** que carga su link de Vercel dentro de la página (en un `iframe`).
 
 ## Añadir un juego nuevo
 
@@ -43,6 +43,8 @@ Copia un bloque dentro de `"juegos": [ ... ]` y cambia los valores:
 - **portada**: imagen en `public/portadas/`. Formato vertical **3:4** (ej. 900×1200). Si la dejas vacía (`""`) se genera una carátula con los `colores` y el título.
 - **incrustar**: `true` para jugarlo dentro de la página. Usa `false` si el link no es un juego web (ej. Memory History, que es móvil).
 - **destacado**: `true` lo pone primero en la galería.
+- **oculto**: `true` lo quita de la web sin borrar sus datos (así está Last Watch ahora).
+- **masInfo**: enlace opcional a otra página, ej. `"/memory-history"`.
 - Los textos pueden ser `"solo en un idioma"` o `{ "es": "...", "en": "..." }`. Si falta `en`, se usa el español.
 
 ## Añadir un avance

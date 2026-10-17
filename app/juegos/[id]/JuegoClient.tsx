@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useLanguage } from '../../components/LanguageSwitcher';
 import Caratula from '../../components/Caratula';
 import {
@@ -18,7 +18,7 @@ const content = {
   en: {
     back: '← All games',
     play: 'Play',
-    clickToPlay: 'Click to play',
+    close: 'Close',
     newTab: 'Open in new tab',
     fullscreen: 'Fullscreen',
     moreInfo: 'More info',
@@ -35,7 +35,7 @@ const content = {
   es: {
     back: '← Todos los juegos',
     play: 'Jugar',
-    clickToPlay: 'Haz clic para jugar',
+    close: 'Cerrar',
     newTab: 'Abrir en otra pestaña',
     fullscreen: 'Pantalla completa',
     moreInfo: 'Más información',
@@ -63,13 +63,6 @@ export default function JuegoClient({ juego }: { juego: Juego }) {
   const reproductor = useRef<HTMLDivElement>(null);
   const avances = avancesOrdenados(juego);
 
-  // Desde la galería se llega con ?jugar=1 para que el juego arranque directamente.
-  useEffect(() => {
-    if (juego.incrustar && new URLSearchParams(window.location.search).get('jugar') === '1') {
-      setJugando(true);
-    }
-  }, [juego.incrustar]);
-
   const pantallaCompleta = () => {
     setJugando(true);
     reproductor.current?.requestFullscreen?.();
@@ -87,37 +80,26 @@ export default function JuegoClient({ juego }: { juego: Juego }) {
           {text.back}
         </Link>
 
-        <div className="mb-6 mt-4 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <div>
-            <span
-              className={`inline-block rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-white ${coloresEstado[juego.estado]}`}
-            >
-              {nombresEstado[juego.estado][language]}
-            </span>
-            <h1 className="mt-3 font-heading text-4xl leading-tight text-[var(--ink-deep)] md:text-5xl">
-              {juego.titulo}
-            </h1>
-            <p className="mt-1 text-lg text-[var(--ink-muted)]">{t(juego.resumen, language)}</p>
-          </div>
-          {juego.incrustar && (
-            <div className="flex flex-wrap gap-3">
-              <button type="button" onClick={pantallaCompleta} className={botonSecundario}>
-                ⛶ {text.fullscreen}
-              </button>
-              <a href={juego.url} target="_blank" rel="noopener noreferrer" className={botonSecundario}>
-                ↗ {text.newTab}
-              </a>
+        {jugando ? (
+          <>
+            <div className="mb-4 mt-4 flex flex-wrap items-center justify-between gap-3">
+              <h1 className="font-heading text-3xl text-[var(--ink-deep)]">{juego.titulo}</h1>
+              <div className="flex flex-wrap gap-3">
+                <button type="button" onClick={pantallaCompleta} className={botonSecundario}>
+                  ⛶ {text.fullscreen}
+                </button>
+                <a href={juego.url} target="_blank" rel="noopener noreferrer" className={botonSecundario}>
+                  ↗ {text.newTab}
+                </a>
+                <button type="button" onClick={() => setJugando(false)} className={botonSecundario}>
+                  ✕ {text.close}
+                </button>
+              </div>
             </div>
-          )}
-        </div>
-
-        {/* Reproductor */}
-        {juego.incrustar ? (
-          <div
-            ref={reproductor}
-            className="relative aspect-video w-full overflow-hidden rounded-3xl border border-[var(--ink-soft)] bg-black shadow-[0_35px_60px_-15px_rgba(34,23,18,0.45)]"
-          >
-            {jugando ? (
+            <div
+              ref={reproductor}
+              className="relative aspect-video w-full overflow-hidden rounded-3xl border border-[var(--ink-soft)] bg-black shadow-[0_35px_60px_-15px_rgba(34,23,18,0.45)]"
+            >
               <iframe
                 src={juego.url}
                 title={juego.titulo}
@@ -125,36 +107,65 @@ export default function JuegoClient({ juego }: { juego: Juego }) {
                 allow="autoplay; fullscreen; gamepad; gyroscope; accelerometer"
                 allowFullScreen
               />
-            ) : (
-              <button
-                type="button"
-                onClick={() => setJugando(true)}
-                className="group absolute inset-0 h-full w-full"
-                aria-label={text.play}
-              >
-                <Caratula juego={juego} sizes="100vw" className="brightness-[0.55]" />
-                <span className="relative flex flex-col items-center gap-4">
-                  <span className="flex h-24 w-24 items-center justify-center rounded-full bg-[var(--accent-soft)] text-4xl text-[var(--ink-deep)] shadow-[0_0_0_10px_rgba(218,176,139,0.35)] transition group-hover:scale-110">
-                    ▶
-                  </span>
-                  <span className="font-heading text-2xl text-white drop-shadow">
-                    {text.clickToPlay}
-                  </span>
-                </span>
-              </button>
-            )}
-          </div>
-        ) : (
-          <div className="flex flex-col items-center gap-6 rounded-3xl border border-[var(--ink-soft)] bg-[var(--parchment)] p-8 sm:flex-row">
-            <div className="relative aspect-[3/4] w-48 shrink-0 overflow-hidden rounded-2xl border border-[var(--ink-soft)]">
-              <Caratula juego={juego} sizes="192px" />
             </div>
-            <Link href={juego.url} className={botonPrimario}>
-              {text.moreInfo} →
-            </Link>
-          </div>
+          </>
+        ) : (
+          /* Escena del juego: carátula grande + botón para jugar */
+          <section className="relative mt-4 overflow-hidden rounded-[2.5rem] border border-[var(--ink-soft)] shadow-[0_35px_60px_-15px_rgba(34,23,18,0.45)]">
+            {juego.portada && (
+              <Image
+                src={juego.portada}
+                alt=""
+                fill
+                sizes="100vw"
+                className="scale-110 object-cover blur-2xl brightness-[0.45]"
+                priority
+              />
+            )}
+            {!juego.portada && <div className="absolute inset-0 bg-[var(--ink-deep)]" />}
+            <div className="relative flex flex-col items-center gap-8 p-6 sm:p-10 md:flex-row md:items-center md:gap-12">
+              <div className="relative aspect-[3/4] w-56 shrink-0 overflow-hidden rounded-2xl border-4 border-[var(--parchment-card)] shadow-2xl sm:w-72">
+                <Caratula juego={juego} sizes="288px" />
+              </div>
+              <div className="flex flex-col items-center gap-5 text-center md:items-start md:text-left">
+                <span
+                  className={`inline-block rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-white ${coloresEstado[juego.estado]}`}
+                >
+                  {nombresEstado[juego.estado][language]}
+                </span>
+                <h1 className="font-heading text-4xl leading-tight text-[var(--parchment-light)] drop-shadow md:text-6xl">
+                  {juego.titulo}
+                </h1>
+                <p className="max-w-xl text-lg text-[var(--parchment)]">{t(juego.resumen, language)}</p>
+                <div className="flex flex-wrap justify-center gap-3 md:justify-start">
+                  {juego.incrustar ? (
+                    <button
+                      type="button"
+                      onClick={() => setJugando(true)}
+                      className="inline-flex items-center gap-3 rounded-full bg-[var(--accent-soft)] px-10 py-4 text-xl font-bold text-[var(--ink-deep)] shadow-[0_0_0_8px_rgba(218,176,139,0.3)] transition hover:scale-105 hover:bg-[var(--parchment-light)]"
+                    >
+                      ▶ {text.play}
+                    </button>
+                  ) : (
+                    <a href={juego.url} target="_blank" rel="noopener noreferrer" className={botonPrimario}>
+                      ↗ {text.newTab}
+                    </a>
+                  )}
+                  {juego.incrustar && (
+                    <a href={juego.url} target="_blank" rel="noopener noreferrer" className={botonSecundario}>
+                      ↗ {text.newTab}
+                    </a>
+                  )}
+                  {juego.masInfo && (
+                    <Link href={juego.masInfo} className={botonSecundario}>
+                      {text.moreInfo} →
+                    </Link>
+                  )}
+                </div>
+              </div>
+            </div>
+          </section>
         )}
-
         <div className="mt-10 grid gap-8 lg:grid-cols-3">
           <div className="space-y-8 lg:col-span-2">
             <section className="rounded-3xl border border-[var(--ink-soft)] bg-[var(--parchment)] p-6">

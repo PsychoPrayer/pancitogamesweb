@@ -164,11 +164,11 @@ export default function HomePageClient() {
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3 lg:grid-cols-4">
+          <div className="mx-auto grid max-w-5xl grid-cols-2 gap-4 sm:gap-8 md:grid-cols-3">
             {visibles.map((juego) => (
               <Link
                 key={juego.id}
-                href={`/juegos/${juego.id}${juego.incrustar ? '?jugar=1' : ''}`}
+                href={`/juegos/${juego.id}`}
                 className="group overflow-hidden rounded-2xl border border-[var(--ink-soft)] bg-[var(--parchment-card)] shadow-sm transition hover:-translate-y-1.5 hover:shadow-[0_25px_40px_-15px_rgba(34,23,18,0.45)] focus-visible:-translate-y-1.5 focus-visible:outline-2 focus-visible:outline-[var(--accent-deep)]"
               >
                 <div className="relative aspect-[3/4] overflow-hidden">
