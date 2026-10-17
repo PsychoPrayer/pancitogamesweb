@@ -1,0 +1,113 @@
+{
+  "juegos": [
+    {
+      "id": "pancito-tiempo",
+      "titulo": "Pancito y las Piezas del Tiempo",
+      "resumen": {
+        "es": "Metroidvania 2D sobre la historia de Venezuela.",
+        "en": "2D metroidvania about the history of Venezuela."
+      },
+      "descripcion": {
+        "es": "Acompaña a Pancito a través de distintas épocas de la historia de Venezuela recuperando las piezas del tiempo.\n\nEscribe aquí más detalles: mecánicas, personajes, qué hace especial al juego.",
+        "en": "Join Pancito across different eras of Venezuelan history to recover the pieces of time.\n\nWrite more details here: mechanics, characters, what makes the game special."
+      },
+      "portada": "",
+      "colores": ["#af6c3e", "#9ec5d3"],
+      "estado": "en-desarrollo",
+      "plataformas": ["Web"],
+      "generos": ["Metroidvania", "Plataformas", "Historia"],
+      "url": "https://pancito-tiempo.vercel.app",
+      "incrustar": true,
+      "controles": {
+        "es": "Flechas o WASD para moverte, espacio para saltar.",
+        "en": "Arrows or WASD to move, space to jump."
+      },
+      "destacado": true,
+      "capturas": [],
+      "avances": [
+        {
+          "fecha": "2026-10-17",
+          "titulo": { "es": "Versión jugable en la web", "en": "Playable web build" },
+          "texto": {
+            "es": "Ya se puede jugar desde el portafolio.",
+            "en": "Now playable from the portfolio."
+          }
+        }
+      ]
+    },
+    {
+      "id": "golf-de-mesa",
+      "titulo": "Golf de Mesa",
+      "resumen": {
+        "es": "Golf de mesa en 3D dentro de tabernas medievales.",
+        "en": "3D tabletop golf inside medieval taverns."
+      },
+      "descripcion": {
+        "es": "Golpea la bola entre jarras, velas y platos en tabernas medievales. Disponible para web y móvil.",
+        "en": "Putt the ball between mugs, candles and plates in medieval taverns. Available on web and mobile."
+      },
+      "portada": "",
+      "colores": ["#b8c69c", "#3b2f2f"],
+      "estado": "en-desarrollo",
+      "plataformas": ["Web", "Móvil"],
+      "generos": ["Deportes", "Casual", "3D"],
+      "url": "https://golf-de-mesa.vercel.app",
+      "incrustar": true,
+      "controles": {
+        "es": "Arrastra para apuntar y suelta para golpear.",
+        "en": "Drag to aim and release to shoot."
+      },
+      "destacado": false,
+      "capturas": [],
+      "avances": []
+    },
+    {
+      "id": "last-watch",
+      "titulo": "Last Watch",
+      "resumen": {
+        "es": "Estrategia en tiempo real 2D.",
+        "en": "2D real-time strategy."
+      },
+      "descripcion": {
+        "es": "Un RTS 2D. Escribe aquí de qué trata.",
+        "en": "A 2D RTS. Describe it here."
+      },
+      "portada": "",
+      "colores": ["#221712", "#e8ad7a"],
+      "estado": "prototipo",
+      "plataformas": ["Web"],
+      "generos": ["Estrategia", "RTS"],
+      "url": "https://last-watch.vercel.app",
+      "incrustar": true,
+      "controles": {
+        "es": "Ratón para seleccionar y dar órdenes.",
+        "en": "Mouse to select and give orders."
+      },
+      "destacado": false,
+      "capturas": [],
+      "avances": []
+    },
+    {
+      "id": "memory-history",
+      "titulo": "Memory History",
+      "resumen": {
+        "es": "Juego de memoria sobre la historia de Venezuela.",
+        "en": "Memory game about the history of Venezuela."
+      },
+      "descripcion": {
+        "es": "Colecciona 55 artefactos, supera 80 niveles y responde quizzes narrativos sobre la historia de Venezuela.",
+        "en": "Collect 55 artifacts, master 80 levels and take narrative quizzes about Venezuelan history."
+      },
+      "portada": "/MemoryHistoryLogoConFondo.png",
+      "colores": ["#b87333", "#d4af37"],
+      "estado": "en-desarrollo",
+      "plataformas": ["Android", "iOS"],
+      "generos": ["Memoria", "Educativo", "Historia"],
+      "url": "/memory-history",
+      "incrustar": false,
+      "destacado": false,
+      "capturas": [],
+      "avances": []
+    }
+  ]
+}
