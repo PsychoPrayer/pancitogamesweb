@@ -201,7 +201,7 @@ export default function MemoryHistoryContent() {
   const localizedCollectibles = collectibles[language];
 
   return (
-    <div className="bg-[var(--memory-cream)]">
+    <div className="bg-[var(--surface-2)]">
       <section className="relative bg-gradient-to-br from-[var(--memory-copper)] via-[var(--memory-bronze)] to-[var(--memory-gold)] text-white py-20 md:py-32">
         <div className="absolute inset-0 bg-black/10" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -225,27 +225,27 @@ export default function MemoryHistoryContent() {
               {text.hero.subtitle}
             </p>
             <div className="flex flex-col items-center gap-4">
-              <span className="inline-flex items-center rounded-full bg-[var(--memory-gold)] px-4 py-1 text-sm font-semibold text-[var(--memory-brown)]">
+              <span className="inline-flex items-center rounded-full bg-[var(--memory-gold)] px-4 py-1 text-sm font-semibold text-[var(--memory-gold)]">
                 {text.hero.status}
               </span>
               <span className="text-sm text-white/80">{text.hero.platforms}</span>
             </div>
-            <button className="rounded-lg bg-[var(--memory-gold)] px-8 py-3 text-lg font-bold text-[var(--memory-brown)] shadow-lg transition-colors hover:bg-[var(--memory-parchment)]">
+            <button className="rounded-lg bg-[var(--memory-gold)] px-8 py-3 text-lg font-bold text-[var(--memory-gold)] shadow-lg transition-colors hover:bg-[var(--surface-2)]">
               {text.hero.cta}
             </button>
           </div>
         </div>
       </section>
 
-      <section className="bg-white py-20">
+      <section className="bg-[var(--surface)] py-20">
         <div className="mx-auto max-w-4xl space-y-6 px-4 sm:px-6 lg:px-8">
-          <h2 className="font-heading text-3xl font-bold text-[var(--memory-brown)] md:text-4xl">
+          <h2 className="font-heading text-3xl font-bold text-[var(--memory-gold)] md:text-4xl">
             {text.about.heading}
           </h2>
           {text.about.paragraphs.map((paragraph) => (
             <p
               key={paragraph}
-              className="text-lg leading-relaxed text-gray-700 md:text-left"
+              className="text-lg leading-relaxed text-[var(--text-muted)] md:text-left"
             >
               {paragraph}
             </p>
@@ -253,9 +253,9 @@ export default function MemoryHistoryContent() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-br from-[var(--memory-cream)] to-[var(--memory-parchment)] py-20">
+      <section className="bg-[var(--bg)] py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="mb-12 text-center font-heading text-3xl font-bold text-[var(--memory-brown)] md:text-4xl">
+          <h2 className="mb-12 text-center font-heading text-3xl font-bold text-[var(--memory-gold)] md:text-4xl">
             {language === 'en' ? 'Key Features' : 'Características clave'}
           </h2>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -269,13 +269,13 @@ export default function MemoryHistoryContent() {
               return (
                 <div
                   key={feature.title}
-                  className={`rounded-lg border-2 bg-white p-6 shadow-lg ${borderClass}`}
+                  className={`rounded-lg border-2 bg-[var(--surface-2)] p-6 shadow-lg ${borderClass}`}
                 >
                   <div className="mb-4 text-4xl">{feature.emoji}</div>
-                  <h3 className="font-heading text-xl font-bold text-[var(--memory-brown)]">
+                  <h3 className="font-heading text-xl font-bold text-[var(--memory-gold)]">
                     {feature.title}
                   </h3>
-                  <p className="mt-3 text-sm text-gray-700">{feature.description}</p>
+                  <p className="mt-3 text-sm text-[var(--text-muted)]">{feature.description}</p>
                 </div>
               );
             })}
@@ -283,9 +283,9 @@ export default function MemoryHistoryContent() {
         </div>
       </section>
 
-      <section className="bg-white py-20">
+      <section className="bg-[var(--surface)] py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="mb-12 text-center font-heading text-3xl font-bold text-[var(--memory-brown)] md:text-4xl">
+          <h2 className="mb-12 text-center font-heading text-3xl font-bold text-[var(--memory-gold)] md:text-4xl">
             {text.collectiblesTitle}
           </h2>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -300,7 +300,7 @@ export default function MemoryHistoryContent() {
               </div>
             ))}
           </div>
-          <p className="mt-8 text-center text-lg text-gray-600">
+          <p className="mt-8 text-center text-lg text-[var(--text-muted)]">
             {text.collectiblesNote}
           </p>
         </div>
@@ -327,9 +327,9 @@ export default function MemoryHistoryContent() {
               <input
                 type="email"
                 placeholder={language === 'en' ? 'Your email' : 'Tu correo'}
-                className="rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[var(--memory-gold)]"
+                className="rounded-lg px-4 py-3 text-[var(--text-strong)] focus:outline-none focus:ring-2 focus:ring-[var(--memory-gold)]"
               />
-              <button className="rounded-lg bg-[var(--memory-gold)] px-6 py-3 font-bold text-[var(--memory-brown)] transition-colors hover:bg-[var(--memory-parchment)]">
+              <button className="rounded-lg bg-[var(--memory-gold)] px-6 py-3 font-bold text-[var(--memory-gold)] transition-colors hover:bg-[var(--surface-2)]">
                 {text.download.notify}
               </button>
             </div>

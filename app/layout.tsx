@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import { Chakra_Petch, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -11,17 +11,17 @@ const inter = Inter({
   variable: "--font-sans",
 });
 
-const cormorant = Cormorant_Garamond({
+const chakra = Chakra_Petch({
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600", "700"],
+  weight: ["500", "600", "700"],
   variable: "--font-heading",
 });
 
 export const metadata: Metadata = {
-  title: "PancitoGames - Creating Memorable Gaming Experiences",
-  description: "PancitoGames develops educational and entertaining mobile games that connect culture, history, and fun. Discover Memory History and more.",
-  keywords: ["PancitoGames", "Memory History", "educational games", "mobile games", "Venezuela", "cultural games"],
+  title: "PancitoGames - Indie Game Studio",
+  description: "PancitoGames is an indie studio making games with passion: history adventures, arcade challenges and more. Play Memory History, Pancito and the Pieces of Time and Tavern Golf in your browser.",
+  keywords: ["PancitoGames", "indie games", "web games", "Memory History", "Pancito y las Piezas del Tiempo", "Tavern Golf", "educational games"],
   authors: [{ name: "PancitoGames" }],
   creator: "PancitoGames",
   publisher: "PancitoGames",
@@ -30,8 +30,8 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://pancitogames.com",
     siteName: "PancitoGames",
-    title: "PancitoGames - Creating Memorable Gaming Experiences",
-    description: "Educational and entertaining mobile games celebrating Latin American culture",
+    title: "PancitoGames - Indie Game Studio",
+    description: "Indie games made with passion. Play them in your browser.",
     images: [
       {
         url: "/LogoPancito.jpg",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "PancitoGames",
-    description: "Creating memorable gaming experiences",
+    description: "Indie games made with passion",
     images: ["/LogoPancito.jpg"],
   },
 };
@@ -55,7 +55,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${cormorant.variable}`}>
+    <html lang="en" className={`${inter.variable} ${chakra.variable}`}>
       <body className="ink-body flex min-h-screen flex-col antialiased">
         <LanguageProvider>
           <Navbar />

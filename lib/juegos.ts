@@ -55,8 +55,8 @@ export const nombresEstado: Record<Estado, Record<Language, string>> = {
 
 export const coloresEstado: Record<Estado, string> = {
   publicado: 'bg-emerald-700',
-  'en-desarrollo': 'bg-[var(--accent-deep)]',
-  prototipo: 'bg-[var(--ink)]',
+  'en-desarrollo': 'bg-amber-600',
+  prototipo: 'bg-violet-600',
 };
 
 /** Avances ordenados del más reciente al más antiguo. */

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useRef, useState } from 'react';
 import { useLanguage } from '../../components/LanguageSwitcher';
 import Caratula from '../../components/Caratula';
+import KofiButton from '../../components/KofiButton';
 import {
   t,
   nombresEstado,
@@ -31,6 +32,7 @@ const content = {
     screenshots: 'Screenshots',
     updates: 'Devlog',
     noUpdates: 'No updates yet.',
+    support: 'Enjoying it? Support the studio.',
   },
   es: {
     back: '← Todos los juegos',
@@ -48,13 +50,14 @@ const content = {
     screenshots: 'Capturas',
     updates: 'Avances',
     noUpdates: 'Todavía no hay avances.',
+    support: '¿Te gusta? Apoya al estudio.',
   },
 } as const;
 
 const botonBase =
   'inline-flex items-center gap-2 rounded-full border border-[var(--ink-soft)] px-5 py-2.5 text-sm font-semibold transition';
 const botonSecundario = `${botonBase} bg-[var(--parchment-card)] text-[var(--ink)] hover:bg-[var(--parchment)]`;
-const botonPrimario = `${botonBase} bg-[var(--accent-soft)] text-[var(--ink-deep)] hover:bg-[var(--accent-deep)] hover:text-[var(--parchment-light)]`;
+const botonPrimario = `${botonBase} bg-[var(--accent-soft)] text-[var(--on-accent)] hover:bg-[var(--accent-deep)] hover:text-[var(--on-accent)]`;
 
 export default function JuegoClient({ juego }: { juego: Juego }) {
   const language = useLanguage();
@@ -142,7 +145,7 @@ export default function JuegoClient({ juego }: { juego: Juego }) {
                     <button
                       type="button"
                       onClick={() => setJugando(true)}
-                      className="inline-flex items-center gap-3 rounded-full bg-[var(--accent-soft)] px-10 py-4 text-xl font-bold text-[var(--ink-deep)] shadow-[0_0_0_8px_rgba(218,176,139,0.3)] transition hover:scale-105 hover:bg-[var(--parchment-light)]"
+                      className="inline-flex items-center gap-3 rounded-full bg-[var(--accent-soft)] px-10 py-4 text-xl font-bold text-[var(--on-accent)] shadow-[0_0_0_8px_rgba(218,176,139,0.3)] transition hover:scale-105 hover:bg-[var(--parchment-light)]"
                     >
                       ▶ {text.play}
                     </button>
@@ -231,6 +234,10 @@ export default function JuegoClient({ juego }: { juego: Juego }) {
               <Dato titulo={text.genres}>{juego.generos.join(' · ')}</Dato>
               {juego.controles && <Dato titulo={text.controls}>{t(juego.controles, language)}</Dato>}
             </dl>
+            <div className="mt-6 space-y-3 border-t border-[var(--border)] pt-6">
+              <p className="text-sm text-[var(--text-muted)]">{text.support}</p>
+              <KofiButton variant="compact" />
+            </div>
           </aside>
         </div>
       </div>

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import { useLanguage } from './components/LanguageSwitcher';
 import Caratula from './components/Caratula';
+import KofiButton from './components/KofiButton';
 import {
   juegos,
   t,
@@ -19,11 +20,12 @@ const filtros: Array<Estado | 'todos'> = ['todos', 'publicado', 'en-desarrollo',
 const content = {
   en: {
     hero: {
-      title: 'Our games, playable right here',
+      eyebrow: 'Indie game studio',
+      title: 'We make games we want to play',
       subtitle:
-        'Click any cover to play it in your browser and follow how each project evolves.',
-      explore: 'See the games',
-      about: 'Our Studio',
+        'History adventures, tavern golf and whatever comes next. Pick a cover and play right in your browser.',
+      explore: 'Play now',
+      about: 'The studio',
     },
     games: {
       title: 'Game Collection',
@@ -37,17 +39,19 @@ const content = {
       title: 'Latest updates',
     },
     cta: {
-      title: 'Want to collaborate?',
-      description: 'Write to us to share ideas, feedback or bring a story to life.',
-      action: 'Contact',
+      title: 'Help us make the next game',
+      description:
+        'PancitoGames is a small independent studio. Every coffee on Ko-fi goes into art, music and more hours of development.',
+      action: 'Contact us',
     },
   },
   es: {
     hero: {
-      title: 'Nuestros juegos, listos para jugar aquí',
+      eyebrow: 'Estudio indie de videojuegos',
+      title: 'Hacemos los juegos que queremos jugar',
       subtitle:
-        'Haz clic en una carátula para jugarlo en el navegador y sigue los avances de cada proyecto.',
-      explore: 'Ver los juegos',
+        'Aventuras por la historia, golf de taberna y lo que venga después. Elige una carátula y juega desde el navegador.',
+      explore: 'Jugar ahora',
       about: 'El estudio',
     },
     games: {
@@ -62,9 +66,10 @@ const content = {
       title: 'Últimos avances',
     },
     cta: {
-      title: '¿Quieres colaborar?',
-      description: 'Escríbenos para compartir ideas, comentarios o darle vida a una historia.',
-      action: 'Contacto',
+      title: 'Ayúdanos a hacer el próximo juego',
+      description:
+        'PancitoGames es un estudio pequeño e independiente. Cada café en Ko-fi se convierte en arte, música y más horas de desarrollo.',
+      action: 'Escríbenos',
     },
   },
 } as const;
@@ -100,33 +105,54 @@ export default function HomePageClient() {
   return (
     <div className="relative overflow-hidden">
       {/* Hero */}
-      <section className="relative px-4 pb-8 pt-20 sm:px-6 lg:px-8">
-        <div className="absolute inset-0 -z-10 opacity-60 blur-3xl">
-          <div className="absolute inset-0 bg-gradient-to-br from-[var(--watercolor-sky)] via-transparent to-[var(--watercolor-sunset)]" />
-        </div>
-        <div className="mx-auto max-w-4xl text-center">
-          <p className="font-heading text-sm uppercase tracking-[0.5em] text-[var(--ink-muted)]">
-            PancitoGames
-          </p>
-          <h1 className="mt-4 font-heading text-4xl leading-tight text-[var(--ink-deep)] text-balance sm:text-5xl md:text-6xl">
-            {text.hero.title}
-          </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-[var(--ink-muted)]">
-            {text.hero.subtitle}
-          </p>
-          <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-            <a
-              href="#games"
-              className="rounded-full border border-[var(--ink-soft)] bg-[var(--accent-soft)] px-8 py-3 text-sm font-semibold text-[var(--ink-deep)] shadow-sm transition hover:bg-[var(--accent-deep)] hover:text-[var(--parchment-light)]"
-            >
-              {text.hero.explore}
-            </a>
-            <Link
-              href="/about"
-              className="rounded-full border border-[var(--ink-soft)] bg-[var(--parchment-card)] px-8 py-3 text-sm font-semibold text-[var(--ink)] shadow-sm transition hover:bg-[var(--parchment)]"
-            >
-              {text.hero.about}
-            </Link>
+      <section className="relative px-4 pb-12 pt-16 sm:px-6 lg:px-8 lg:pt-24">
+        <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.1fr_1fr]">
+          <div className="text-center lg:text-left">
+            <p className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.25em] text-[var(--accent)]">
+              <span className="h-2 w-2 animate-pulse rounded-full bg-[var(--accent)]" />
+              {text.hero.eyebrow}
+            </p>
+            <h1 className="mt-6 font-heading text-4xl font-bold uppercase leading-[1.05] text-[var(--text-strong)] text-balance sm:text-5xl md:text-6xl">
+              {text.hero.title}
+            </h1>
+            <p className="mx-auto mt-5 max-w-xl text-lg text-[var(--text-muted)] lg:mx-0">
+              {text.hero.subtitle}
+            </p>
+            <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-start">
+              <a
+                href="#games"
+                className="inline-flex items-center gap-2 rounded-full bg-[var(--accent)] px-8 py-3.5 font-semibold text-[var(--on-accent)] shadow-[0_10px_30px_-10px_var(--accent)] transition hover:-translate-y-0.5 hover:bg-[var(--accent-hover)]"
+              >
+                ▶ {text.hero.explore}
+              </a>
+              <Link
+                href="/about"
+                className="rounded-full border border-[var(--border)] bg-[var(--surface)] px-8 py-3.5 font-semibold text-[var(--text)] transition hover:border-[var(--accent)]"
+              >
+                {text.hero.about}
+              </Link>
+            </div>
+          </div>
+
+          {/* Carátulas en abanico */}
+          <div className="relative mx-auto h-[340px] w-full max-w-md sm:h-[420px]">
+            {juegos.slice(0, 3).map((juego, i) => {
+              const pos = [
+                '-rotate-[12deg] -translate-x-[100%] translate-y-8',
+                'z-10 -translate-x-1/2 -translate-y-2 scale-105',
+                'rotate-[12deg] translate-x-0 translate-y-8',
+              ][i];
+              return (
+                <Link
+                  key={juego.id}
+                  href={`/juegos/${juego.id}`}
+                  aria-label={juego.titulo}
+                  className={`absolute left-1/2 top-0 aspect-[3/4] w-44 overflow-hidden rounded-2xl border-2 border-[var(--border)] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] transition duration-300 hover:z-20 hover:border-[var(--accent)] sm:w-56 ${pos} hover:-translate-y-6`}
+                >
+                  <Caratula juego={juego} sizes="224px" />
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -147,7 +173,7 @@ export default function HomePageClient() {
                   onClick={() => setFiltro(f)}
                   className={`rounded-full border px-4 py-1.5 text-sm font-semibold transition ${
                     filtro === f
-                      ? 'border-[var(--accent-deep)] bg-[var(--accent-deep)] text-[var(--parchment-light)]'
+                      ? 'border-[var(--accent-deep)] bg-[var(--accent)] text-[var(--on-accent)]'
                       : 'border-[var(--ink-soft)] bg-[var(--parchment-card)] text-[var(--ink)] hover:bg-[var(--parchment)]'
                   }`}
                 >
@@ -179,7 +205,7 @@ export default function HomePageClient() {
                     {nombresEstado[juego.estado][language]}
                   </span>
                   <div className="absolute inset-0 flex items-center justify-center bg-[rgba(34,23,18,0.5)] opacity-0 transition group-hover:opacity-100 group-focus-visible:opacity-100">
-                    <span className="flex items-center gap-2 rounded-full bg-[var(--accent-soft)] px-6 py-3 font-semibold text-[var(--ink-deep)] shadow-lg">
+                    <span className="flex items-center gap-2 rounded-full bg-[var(--accent-soft)] px-6 py-3 font-semibold text-[var(--on-accent)] shadow-lg">
                       {juego.incrustar ? `▶ ${text.games.play}` : `${text.games.details} →`}
                     </span>
                   </div>
@@ -240,22 +266,23 @@ export default function HomePageClient() {
         </section>
       )}
 
-      {/* CTA */}
+      {/* Apoyo en Ko-fi */}
       <section className="relative px-4 py-24 sm:px-6 lg:px-8">
-        <div className="absolute inset-0 -z-10 opacity-70 blur-3xl">
-          <div className="absolute inset-0 bg-gradient-to-r from-[var(--watercolor-sky)] via-transparent to-[var(--watercolor-sunset)]" />
-        </div>
-        <div className="mx-auto max-w-4xl rounded-[2.5rem] border border-[var(--ink-soft)] bg-[var(--parchment)] p-10 text-center shadow-[0_30px_50px_-20px_rgba(34,23,18,0.35)]">
-          <h2 className="font-heading text-3xl text-[var(--ink-deep)] md:text-4xl">
+        <div className="mx-auto max-w-4xl overflow-hidden rounded-[2rem] border border-[var(--border)] bg-gradient-to-br from-[var(--surface-2)] to-[var(--surface)] p-10 text-center shadow-[0_30px_60px_-25px_rgba(0,0,0,0.8)]">
+          <div className="text-5xl">☕</div>
+          <h2 className="mt-4 font-heading text-3xl font-bold uppercase text-[var(--text-strong)] md:text-4xl">
             {text.cta.title}
           </h2>
-          <p className="mt-4 text-base text-[var(--ink-muted)]">{text.cta.description}</p>
-          <Link
-            href="/contact"
-            className="mt-8 inline-flex items-center justify-center rounded-full border border-[var(--ink-soft)] bg-[var(--accent-soft)] px-8 py-3 text-sm font-semibold text-[var(--ink-deep)] transition hover:bg-[var(--accent-deep)] hover:text-[var(--parchment-light)]"
-          >
-            {text.cta.action}
-          </Link>
+          <p className="mx-auto mt-4 max-w-2xl text-base text-[var(--text-muted)]">{text.cta.description}</p>
+          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <KofiButton />
+            <Link
+              href="/contact"
+              className="rounded-full border border-[var(--border)] px-7 py-3.5 font-semibold text-[var(--text)] transition hover:border-[var(--accent)]"
+            >
+              {text.cta.action}
+            </Link>
+          </div>
         </div>
       </section>
     </div>

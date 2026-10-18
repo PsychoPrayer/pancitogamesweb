@@ -211,7 +211,7 @@ export default function TermsContent() {
             </p>
             <Link
               href="/"
-              className="mt-4 inline-flex items-center justify-center rounded-full border border-[var(--ink-soft)] bg-[var(--accent-soft)] px-6 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--ink-deep)] transition hover:bg-[var(--accent-deep)] hover:text-[var(--parchment-light)]"
+              className="mt-4 inline-flex items-center justify-center rounded-full border border-[var(--ink-soft)] bg-[var(--accent-soft)] px-6 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--on-accent)] transition hover:bg-[var(--accent-deep)] hover:text-[var(--on-accent)]"
             >
               {text.contactCta}
             </Link>

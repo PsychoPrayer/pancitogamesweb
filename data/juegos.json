@@ -4,12 +4,12 @@
       "id": "memory-history",
       "titulo": "Memory History",
       "resumen": {
-        "es": "Juego de memoria sobre la historia de Venezuela.",
-        "en": "Memory game about the history of Venezuela."
+        "es": "Juego de memoria con la historia y la cultura de distintos países.",
+        "en": "Memory game with the history and culture of different countries."
       },
       "descripcion": {
-        "es": "Colecciona 55 artefactos, supera 80 niveles y responde quizzes narrativos sobre la historia de Venezuela.",
-        "en": "Collect 55 artifacts, master 80 levels and take narrative quizzes about Venezuelan history."
+        "es": "Empareja cartas y descubre la historia detrás de cada una: personajes, inventos, comidas y lugares de distintos países.\n\nColecciona artefactos, supera niveles cada vez más difíciles y pon a prueba tu memoria.",
+        "en": "Match cards and discover the story behind each one: people, inventions, food and places from different countries.\n\nCollect artifacts, beat increasingly harder levels and put your memory to the test."
       },
       "portada": "/portadas/memory-history.jpg",
       "colores": [
@@ -42,12 +42,12 @@
       "id": "pancito-tiempo",
       "titulo": "Pancito y las Piezas del Tiempo",
       "resumen": {
-        "es": "Metroidvania 2D sobre la historia de Venezuela.",
-        "en": "2D metroidvania about the history of Venezuela."
+        "es": "Metroidvania 2D que viaja por la historia del mundo.",
+        "en": "2D metroidvania that travels through world history."
       },
       "descripcion": {
-        "es": "Acompaña a Pancito a través de distintas épocas de la historia de Venezuela recuperando las piezas del tiempo.\n\nEscribe aquí más detalles: mecánicas, personajes, qué hace especial al juego.",
-        "en": "Join Pancito across different eras of Venezuelan history to recover the pieces of time.\n\nWrite more details here: mechanics, characters, what makes the game special."
+        "es": "El Moho Gris rompió el Gran Libro de la Historia y sus piezas quedaron repartidas por el tiempo. Acompaña a Pancito a través de distintas épocas y civilizaciones del mundo, desde la prehistoria en adelante, para recuperarlas.\n\nExplora, salta, descubre secretos y aprende de cada época mientras devuelves el orden a la historia.",
+        "en": "The Grey Mold broke the Great Book of History and its pieces were scattered across time. Join Pancito through different eras and civilizations of the world, from prehistory onwards, to recover them.\n\nExplore, jump, uncover secrets and learn about each era while restoring order to history."
       },
       "portada": "/portadas/pancito-tiempo.jpg",
       "colores": [

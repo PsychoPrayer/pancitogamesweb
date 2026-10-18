@@ -19,7 +19,7 @@ export default function ContactContent() {
     en: {
       heroTitle: 'Write to PancitoGames',
       heroSubtitle:
-        'Tell us about your project, your classroom, or the stories you want to preserve. We are listening.',
+        'Tell us your idea, your proposal, or what you thought of our games. We are listening.',
       formTitle: 'Send us a message',
       labels: {
         name: 'Name *',
@@ -64,14 +64,14 @@ export default function ContactContent() {
         {
           question: 'Are you creating more games beyond Memory History?',
           answer:
-            'Absolutely. We are prototyping new albums that explore histories from different regions across the Americas.',
+            'Absolutely. Pancito and the Pieces of Time and Tavern Golf are already playable on this site, and more ideas are on the way.',
         },
       ],
     },
     es: {
       heroTitle: 'Escríbenos a PancitoGames',
       heroSubtitle:
-        'Cuéntanos sobre tu proyecto, tu aula o las historias que quieres preservar. Estamos atentos.',
+        'Cuéntanos tu idea, tu propuesta o qué te parecieron nuestros juegos. Te leemos.',
       formTitle: 'Envíanos un mensaje',
       labels: {
         name: 'Nombre *',
@@ -116,7 +116,7 @@ export default function ContactContent() {
         {
           question: '¿Están creando más juegos además de Memory History?',
           answer:
-            'Claro que sí. Estamos prototipando nuevos álbumes que exploran historias de distintas regiones de las Américas.',
+            'Claro que sí. Pancito y las Piezas del Tiempo y Tavern Golf ya se pueden jugar en esta web, y vienen más ideas en camino.',
         },
       ],
     },
@@ -245,7 +245,7 @@ export default function ContactContent() {
               <button
                 type="submit"
                 disabled={status === 'sending'}
-                className="w-full rounded-full border border-[var(--ink-soft)] bg-[var(--accent-soft)] px-6 py-3 text-sm font-semibold text-[var(--ink-deep)] shadow-sm transition hover:bg-[var(--accent-deep)] hover:text-[var(--parchment-light)] disabled:opacity-60"
+                className="w-full rounded-full border border-[var(--ink-soft)] bg-[var(--accent-soft)] px-6 py-3 text-sm font-semibold text-[var(--on-accent)] shadow-sm transition hover:bg-[var(--accent-deep)] hover:text-[var(--on-accent)] disabled:opacity-60"
               >
                 {status === 'sending'
                   ? text.sending

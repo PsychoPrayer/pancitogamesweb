@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
 import LanguageSwitcher, { useLanguage } from './LanguageSwitcher';
+import KofiButton from './KofiButton';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -14,21 +15,21 @@ export default function Navbar() {
       brand: 'PancitoGames',
       links: {
         home: 'Home',
-        games: 'Collection',
+        games: 'Games',
         about: 'About',
         contact: 'Contact',
       },
-      tagline: 'Interactive Histories',
+      tagline: 'Indie Game Studio',
     },
     es: {
       brand: 'PancitoGames',
       links: {
         home: 'Inicio',
-        games: 'Colección',
+        games: 'Juegos',
         about: 'Acerca',
         contact: 'Contacto',
       },
-      tagline: 'Historias Interactivas',
+      tagline: 'Estudio Indie',
     },
   } as const;
 
@@ -42,7 +43,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-[var(--ink-soft)] bg-[var(--parchment-overlay)]/95 backdrop-blur-md">
+    <nav className="sticky top-0 z-50 border-b border-[var(--ink-soft)] bg-[var(--parchment-overlay)]/80 backdrop-blur-md">
       <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-4">
           {/* Logo */}
@@ -61,7 +62,7 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Navigation */}
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-5 lg:flex">
           <span className="font-heading text-xs uppercase tracking-[0.4em] text-[var(--ink-muted)]">
             {labels.tagline}
           </span>
@@ -76,13 +77,14 @@ export default function Navbar() {
               </Link>
             ))}
           </div>
+          <KofiButton variant="compact" />
           <LanguageSwitcher />
         </div>
 
         {/* Mobile menu button */}
         <button
           type="button"
-          className="inline-flex items-center justify-center rounded-full border border-[var(--ink-soft)] bg-[var(--parchment-card)] p-2 text-[var(--ink)] shadow-sm transition hover:bg-[var(--parchment)] md:hidden"
+          className="inline-flex items-center justify-center rounded-full border border-[var(--ink-soft)] bg-[var(--parchment-card)] p-2 text-[var(--ink)] shadow-sm transition hover:bg-[var(--parchment)] lg:hidden"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle menu"
         >
@@ -113,7 +115,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="border-t border-[var(--ink-soft)] bg-[var(--parchment-overlay)] md:hidden">
+        <div className="border-t border-[var(--ink-soft)] bg-[var(--parchment-overlay)] lg:hidden">
           <div className="space-y-1 px-4 pb-4 pt-2">
             {navigation.map((item) => (
               <Link
@@ -125,7 +127,8 @@ export default function Navbar() {
                 {item.name}
               </Link>
             ))}
-            <div className="px-3 py-2">
+            <div className="flex items-center gap-3 px-3 py-2">
+              <KofiButton variant="compact" />
               <LanguageSwitcher />
             </div>
           </div>

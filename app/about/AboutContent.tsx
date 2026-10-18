@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useLanguage } from '../components/LanguageSwitcher';
+import KofiButton from '../components/KofiButton';
 
 export default function AboutContent() {
   const language = useLanguage();
@@ -10,34 +11,35 @@ export default function AboutContent() {
   const copy = {
     en: {
       heroTitle: 'About PancitoGames',
-      heroSubtitle: 'Crafting memorable gaming experiences since 2025.',
+      heroSubtitle: 'An indie studio that makes video games out of pure passion.',
       storyHeading: 'Our Story',
       storyParagraphs: [
-        'Founded in 2025 in the United States, PancitoGames was born from a desire to preserve stories and traditions through play.',
-        'We treat video games as living archives—spaces where people can connect with shared history while creating new memories.',
-        'Every project focuses on quality, accessibility, and respectful storytelling that invites curiosity.',
+        'PancitoGames was born in 2025 from something simple: we love video games, and we wanted to make our own.',
+        'We make the games we would like to play. Some travel through history and teach along the way, like Memory History and Pancito and the Pieces of Time. Others are just for fun, like Tavern Golf.',
+        'Whatever the genre, every project gets the same care: playful mechanics, its own visual identity and lots of detail.',
       ],
       pillars: [
         {
           emoji: '🎯',
           title: 'Mission',
           description:
-            'Create narrative-rich games that teach, entertain, and safeguard community heritage from every corner of the Americas.',
+            'Create fun, polished games made with passion, that anyone can pick up and enjoy, and that leave something behind, whether a laugh, a challenge or a piece of history.',
         },
         {
           emoji: '🔭',
           title: 'Vision',
           description:
-            'Be the studio of choice for cultural, educational mobile games that honor diverse stories in multiple languages.',
+            'Grow into a recognized independent studio with a catalog of varied, original games played across the world on web and mobile.',
         },
         {
           emoji: '💎',
           title: 'Values',
           list: [
-            'Quality over quantity',
-            'Education through play',
-            'Respect for cultural diversity',
-            'Passion in every detail',
+            'Passion for making games',
+            'Fun comes first',
+            'Learning through play',
+            'Quality and care in every detail',
+            'Respect for players: no tricks, no abusive ads',
           ],
         },
       ],
@@ -45,69 +47,70 @@ export default function AboutContent() {
       doing: [
         {
           emoji: '🎮',
-          title: 'Educational Mobile Games',
+          title: 'Games for everyone',
           description:
-            'We design experiences that balance fun mechanics with deep historical and cultural research.',
+            'Platformers, puzzles, sports, arcade… We explore different genres and play on web and mobile.',
         },
         {
-          emoji: '🌍',
-          title: 'Cultural Preservation',
+          emoji: '📚',
+          title: 'Learning by playing',
           description:
-            'Each title becomes a digital album that keeps oral histories, artifacts, and landscapes alive for new generations.',
+            'Several of our games turn history and culture into adventures, so learning feels like part of the fun.',
         },
         {
           emoji: '🎨',
-          title: 'Art & Sound Direction',
+          title: 'Art & sound with personality',
           description:
-            'Watercolor palettes, handcrafted typography, and intimate soundscapes bring every setting to life.',
+            'Each game has its own style, from pixel art to 3D taverns, with music and effects made to fit it.',
         },
       ],
       stats: [
         { value: '2025', label: 'Founded' },
-        { value: '1+', label: 'Games in development' },
-        { value: '55+', label: 'Cultural artifacts' },
+        { value: '3', label: 'Playable games' },
         { value: '2', label: 'Languages' },
+        { value: '∞', label: 'Passion' },
       ],
       teamTitle: 'Our Team',
       teamIntro:
-        'Developers, designers, writers, and educators united by a love for history and interactive storytelling.',
+        'A small team of developers and artists who love video games and keep learning with every project.',
       teamDetails:
-        'Headquartered in the United States, collaborating remotely with talent across the Americas.',
-      ctaTitle: 'Partner with PancitoGames',
+        'Based in the United States, working remotely.',
+      ctaTitle: 'Want to collaborate or support us?',
       ctaText:
-        'Share your archives, oral histories, or educational goals—we would love to explore them together.',
+        'Write to us with ideas, feedback or proposals. You can also support the studio on Ko-fi.',
       ctaAction: 'Reach out →',
     },
     es: {
       heroTitle: 'Acerca de PancitoGames',
-      heroSubtitle: 'Creando experiencias memorables desde 2025.',
+      heroSubtitle: 'Un estudio indie que hace videojuegos por pura pasión.',
       storyHeading: 'Nuestra historia',
       storyParagraphs: [
-        'Fundado en 2025 en Estados Unidos, PancitoGames nació del deseo de preservar historias y tradiciones a través del juego.',
-        'Tratamos los videojuegos como archivos vivos: espacios donde las personas conectan con la historia compartida mientras crean nuevos recuerdos.',
-        'Cada proyecto se centra en la calidad, la accesibilidad y un relato respetuoso que despierte curiosidad.',
+        'PancitoGames nació en 2025 de algo muy simple: nos encantan los videojuegos y queríamos hacer los nuestros.',
+        'Hacemos los juegos que nos gustaría jugar. Algunos viajan por la historia y enseñan por el camino, como Memory History y Pancito y las Piezas del Tiempo; otros son pura diversión, como Tavern Golf.',
+        'Sea cual sea el género, cada proyecto recibe el mismo cariño: mecánicas que enganchan, una identidad visual propia y mucho detalle.',
       ],
       pillars: [
         {
           emoji: '🎯',
           title: 'Misión',
           description:
-            'Crear juegos llenos de narrativa que enseñen, entretengan y resguarden la herencia comunitaria de cada rincón de las Américas.',
+            'Crear juegos divertidos y cuidados, hechos con pasión, que cualquiera pueda disfrutar y que dejen algo: una risa, un reto o un pedazo de historia.',
         },
         {
           emoji: '🔭',
           title: 'Visión',
           description:
-            'Ser el estudio referente de juegos móviles educativos y culturales que honran historias diversas en varios idiomas.',
+            'Convertirnos en un estudio independiente reconocido, con un catálogo de juegos variados y originales que se jueguen en todo el mundo, en web y móvil.',
         },
         {
           emoji: '💎',
           title: 'Valores',
           list: [
-            'Calidad sobre cantidad',
-            'Educación mediante el juego',
-            'Respeto por la diversidad cultural',
-            'Pasión en cada detalle',
+            'Pasión por hacer videojuegos',
+            'La diversión es lo primero',
+            'Aprender jugando',
+            'Calidad y cuidado en cada detalle',
+            'Respeto al jugador: sin trampas ni anuncios abusivos',
           ],
         },
       ],
@@ -115,37 +118,37 @@ export default function AboutContent() {
       doing: [
         {
           emoji: '🎮',
-          title: 'Juegos móviles educativos',
+          title: 'Juegos para todos',
           description:
-            'Diseñamos experiencias que equilibran mecánicas divertidas con investigación histórica y cultural profunda.',
+            'Plataformas, puzles, deportes, arcade… Exploramos géneros distintos y publicamos en web y móvil.',
         },
         {
-          emoji: '🌍',
-          title: 'Preservación cultural',
+          emoji: '📚',
+          title: 'Aprender jugando',
           description:
-            'Cada título se convierte en un álbum digital que mantiene vivas tradiciones y paisajes para nuevas generaciones.',
+            'Varios de nuestros juegos convierten la historia y la cultura en aventuras, para que aprender sea parte de la diversión.',
         },
         {
           emoji: '🎨',
-          title: 'Dirección de arte y sonido',
+          title: 'Arte y sonido con personalidad',
           description:
-            'Paletas en acuarela, tipografías artesanales y paisajes sonoros íntimos dan vida a cada escenario.',
+            'Cada juego tiene su propio estilo, del pixel art a las tabernas en 3D, con música y efectos hechos a su medida.',
         },
       ],
       stats: [
         { value: '2025', label: 'Fundación' },
-        { value: '1+', label: 'Juegos en desarrollo' },
-        { value: '55+', label: 'Artefactos culturales' },
+        { value: '3', label: 'Juegos jugables' },
         { value: '2', label: 'Idiomas' },
+        { value: '∞', label: 'Pasión' },
       ],
       teamTitle: 'Nuestro equipo',
       teamIntro:
-        'Desarrolladores, diseñadores, guionistas y educadores unidos por el amor a la historia y la narrativa interactiva.',
+        'Un equipo pequeño de desarrolladores y artistas que aman los videojuegos y aprenden algo nuevo con cada proyecto.',
       teamDetails:
-        'Con base en Estados Unidos y colaboración remota con talento en toda América.',
-      ctaTitle: 'Colabora con PancitoGames',
+        'Con base en Estados Unidos y trabajo en remoto.',
+      ctaTitle: '¿Quieres colaborar o apoyarnos?',
       ctaText:
-        'Comparte tus archivos, historias orales o metas educativas. Nos encantará explorarlas juntos.',
+        'Escríbenos con ideas, comentarios o propuestas. También puedes apoyar al estudio en Ko-fi.',
       ctaAction: 'Escríbenos →',
     },
   } as const;
@@ -300,10 +303,11 @@ export default function AboutContent() {
           <p className="mt-4 text-base text-[var(--ink-muted)]">{text.ctaText}</p>
           <Link
             href="/contact"
-            className="mt-6 inline-flex items-center justify-center rounded-full border border-[var(--ink-soft)] bg-[var(--accent-soft)] px-8 py-3 text-sm font-semibold text-[var(--ink-deep)] transition hover:bg-[var(--accent-deep)] hover:text-[var(--parchment-light)]"
+            className="mt-6 inline-flex items-center justify-center rounded-full border border-[var(--ink-soft)] bg-[var(--accent-soft)] px-8 py-3 text-sm font-semibold text-[var(--on-accent)] transition hover:bg-[var(--accent-deep)] hover:text-[var(--on-accent)]"
           >
             {text.ctaAction}
           </Link>
+          <KofiButton className="ml-0 mt-6 sm:ml-4" />
         </div>
       </section>
     </div>
