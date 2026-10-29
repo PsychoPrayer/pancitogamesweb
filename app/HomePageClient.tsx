@@ -137,9 +137,10 @@ export default function HomePageClient() {
           {/* Carátulas en abanico */}
           <div className="relative mx-auto h-[340px] w-full max-w-md sm:h-[420px]">
             {juegos.slice(0, 3).map((juego, i) => {
+              // El primer juego de la lista (el más nuevo) va al centro.
               const pos = [
-                '-rotate-[12deg] -translate-x-[100%] translate-y-8',
                 'z-10 -translate-x-1/2 -translate-y-2 scale-105',
+                '-rotate-[12deg] -translate-x-[100%] translate-y-8',
                 'rotate-[12deg] translate-x-0 translate-y-8',
               ][i];
               return (
@@ -190,7 +191,7 @@ export default function HomePageClient() {
             />
           </div>
 
-          <div className="mx-auto grid max-w-5xl grid-cols-2 gap-4 sm:gap-8 md:grid-cols-3">
+          <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
             {visibles.map((juego) => (
               <Link
                 key={juego.id}

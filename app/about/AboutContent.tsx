@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useLanguage } from '../components/LanguageSwitcher';
 import KofiButton from '../components/KofiButton';
+import { juegos } from '../../lib/juegos';
 
 export default function AboutContent() {
   const language = useLanguage();
@@ -66,7 +67,7 @@ export default function AboutContent() {
       ],
       stats: [
         { value: '2025', label: 'Founded' },
-        { value: '3', label: 'Playable games' },
+        { value: String(juegos.length), label: 'Playable games' },
         { value: '2', label: 'Languages' },
         { value: '∞', label: 'Passion' },
       ],
@@ -137,7 +138,7 @@ export default function AboutContent() {
       ],
       stats: [
         { value: '2025', label: 'Fundación' },
-        { value: '3', label: 'Juegos jugables' },
+        { value: String(juegos.length), label: 'Juegos jugables' },
         { value: '2', label: 'Idiomas' },
         { value: '∞', label: 'Pasión' },
       ],

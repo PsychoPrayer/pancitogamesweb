@@ -1,6 +1,53 @@
 {
   "juegos": [
     {
+      "id": "migas-de-historia",
+      "titulo": "Migas de Historia",
+      "resumen": {
+        "es": "Rompecabezas de historias con Pancito, para niños.",
+        "en": "Story jigsaw puzzles with Pancito, for kids."
+      },
+      "descripcion": {
+        "es": "¡Oh no, el cuaderno de viaje de Pancito se hizo migas! Ayúdalo a unir los pedazos de cada lámina para recuperar las historias de Venezuela, España y Estados Unidos: personajes, monumentos, comidas, animales y tradiciones.\n\nCada rompecabezas completado se guarda en tu colección. Gana estrellas, desbloquea nuevas láminas y elige entre piezas sencillas o de rompecabezas clásico para más reto. Pensado para niños de 6 a 12 años.",
+        "en": "Oh no, Pancito's travel notebook crumbled to bits! Help him put the pieces of each picture back together to recover stories from Venezuela, Spain and the United States: people, monuments, food, animals and traditions.\n\nEvery finished puzzle is saved to your collection. Earn stars, unlock new pictures and choose simple pieces or classic jigsaw pieces for a bigger challenge. Made for kids aged 6 to 12."
+      },
+      "portada": "/portadas/migas-de-historia.jpg",
+      "colores": [
+        "#c2622d",
+        "#e9d3a3"
+      ],
+      "estado": "en-desarrollo",
+      "plataformas": [
+        "Web"
+      ],
+      "generos": [
+        "Rompecabezas",
+        "Educativo",
+        "Infantil"
+      ],
+      "url": "https://migas-de-historia.vercel.app",
+      "incrustar": true,
+      "controles": {
+        "es": "Arrastra las piezas con el ratón o el dedo hasta su lugar.",
+        "en": "Drag the pieces into place with your mouse or finger."
+      },
+      "destacado": false,
+      "capturas": [],
+      "avances": [
+        {
+          "fecha": "2026-10-29",
+          "titulo": {
+            "es": "¡Nuevo juego en el portafolio!",
+            "en": "New game in the portfolio!"
+          },
+          "texto": {
+            "es": "Migas de Historia ya se puede jugar desde aquí.",
+            "en": "Migas de Historia is now playable from here."
+          }
+        }
+      ]
+    },
+    {
       "id": "memory-history",
       "titulo": "Memory History",
       "resumen": {
