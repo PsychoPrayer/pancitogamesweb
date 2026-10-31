@@ -26,6 +26,8 @@ export type Juego = {
   url: string;
   incrustar: boolean;
   controles?: Texto;
+  /** Aviso importante que se muestra junto al botón de jugar (p. ej. "solo para ordenadores"). */
+  aviso?: Texto;
   destacado?: boolean;
   /** true para no mostrarlo en la web (sin borrar sus datos). */
   oculto?: boolean;

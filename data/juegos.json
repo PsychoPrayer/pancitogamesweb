@@ -103,8 +103,12 @@
       ],
       "estado": "en-desarrollo",
       "plataformas": [
-        "Web"
+        "PC (navegador)"
       ],
+      "aviso": {
+        "es": "Solo para ordenadores: necesitas teclado para jugar. No funciona en móviles ni tablets.",
+        "en": "Computers only: you need a keyboard to play. It doesn't work on phones or tablets."
+      },
       "generos": [
         "Metroidvania",
         "Plataformas",

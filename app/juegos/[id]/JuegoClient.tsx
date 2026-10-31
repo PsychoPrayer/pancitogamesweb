@@ -27,6 +27,7 @@ const content = {
     details: 'Details',
     status: 'Status',
     platforms: 'Platforms',
+    notice: 'Important',
     genres: 'Genres',
     controls: 'Controls',
     screenshots: 'Screenshots',
@@ -45,6 +46,7 @@ const content = {
     details: 'Ficha',
     status: 'Estado',
     platforms: 'Plataformas',
+    notice: 'Importante',
     genres: 'Géneros',
     controls: 'Controles',
     screenshots: 'Capturas',
@@ -136,16 +138,22 @@ export default function JuegoClient({ juego }: { juego: Juego }) {
                 >
                   {nombresEstado[juego.estado][language]}
                 </span>
-                <h1 className="font-heading text-4xl leading-tight text-[var(--parchment-light)] drop-shadow md:text-6xl">
+                <h1 className="font-heading text-4xl leading-tight text-[var(--text-strong)] drop-shadow md:text-6xl">
                   {juego.titulo}
                 </h1>
-                <p className="max-w-xl text-lg text-[var(--parchment)]">{t(juego.resumen, language)}</p>
+                <p className="max-w-xl text-lg text-[var(--text)]">{t(juego.resumen, language)}</p>
+                {juego.aviso && (
+                  <p className="flex max-w-xl items-start gap-2 rounded-xl border border-amber-400/40 bg-amber-500/15 px-4 py-2.5 text-left text-sm font-semibold text-amber-200">
+                    <span aria-hidden>💻</span>
+                    {t(juego.aviso, language)}
+                  </p>
+                )}
                 <div className="flex flex-wrap justify-center gap-3 md:justify-start">
                   {juego.incrustar ? (
                     <button
                       type="button"
                       onClick={() => setJugando(true)}
-                      className="inline-flex items-center gap-3 rounded-full bg-[var(--accent-soft)] px-10 py-4 text-xl font-bold text-[var(--on-accent)] shadow-[0_0_0_8px_rgba(218,176,139,0.3)] transition hover:scale-105 hover:bg-[var(--parchment-light)]"
+                      className="inline-flex items-center gap-3 rounded-full bg-[var(--accent-soft)] px-10 py-4 text-xl font-bold text-[var(--on-accent)] shadow-[0_0_0_8px_rgba(218,176,139,0.3)] transition hover:scale-105 hover:bg-[var(--accent-hover)]"
                     >
                       ▶ {text.play}
                     </button>
@@ -231,6 +239,7 @@ export default function JuegoClient({ juego }: { juego: Juego }) {
             <dl className="space-y-4 text-sm">
               <Dato titulo={text.status}>{nombresEstado[juego.estado][language]}</Dato>
               <Dato titulo={text.platforms}>{juego.plataformas.join(' · ')}</Dato>
+              {juego.aviso && <Dato titulo={text.notice}>{t(juego.aviso, language)}</Dato>}
               <Dato titulo={text.genres}>{juego.generos.join(' · ')}</Dato>
               {juego.controles && <Dato titulo={text.controls}>{t(juego.controles, language)}</Dato>}
             </dl>
