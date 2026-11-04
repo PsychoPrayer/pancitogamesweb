@@ -8,8 +8,8 @@
         "en": "Story jigsaw puzzles with Pancito, for kids."
       },
       "descripcion": {
-        "es": "¡Oh no, el cuaderno de viaje de Pancito se hizo migas! Ayúdalo a unir los pedazos de cada lámina para recuperar las historias de Venezuela, España y Estados Unidos: personajes, monumentos, comidas, animales y tradiciones.\n\nCada rompecabezas completado se guarda en tu colección. Gana estrellas, desbloquea nuevas láminas y elige entre piezas sencillas o de rompecabezas clásico para más reto. Pensado para niños de 6 a 12 años.",
-        "en": "Oh no, Pancito's travel notebook crumbled to bits! Help him put the pieces of each picture back together to recover stories from Venezuela, Spain and the United States: people, monuments, food, animals and traditions.\n\nEvery finished puzzle is saved to your collection. Earn stars, unlock new pictures and choose simple pieces or classic jigsaw pieces for a bigger challenge. Made for kids aged 6 to 12."
+        "es": "¡Oh no, el cuaderno de viaje de Pancito se hizo migas! Ayúdalo a unir los pedazos de cada lámina para recuperar las historias de Venezuela, España y Estados Unidos: personajes, monumentos, comidas, animales y tradiciones.\n\nCada rompecabezas completado se guarda en tu colección. Gana estrellas, desbloquea nuevas láminas y elige entre piezas sencillas o de rompecabezas clásico para más reto. Pensado para niños de 6 a 12 años. Se puede jugar en el navegador del ordenador o del móvil.",
+        "en": "Oh no, Pancito's travel notebook crumbled to bits! Help him put the pieces of each picture back together to recover stories from Venezuela, Spain and the United States: people, monuments, food, animals and traditions.\n\nEvery finished puzzle is saved to your collection. Earn stars, unlock new pictures and choose simple pieces or classic jigsaw pieces for a bigger challenge. Made for kids aged 6 to 12. Play it in your computer or phone browser."
       },
       "portada": "/portadas/migas-de-historia.jpg",
       "colores": [
@@ -18,7 +18,8 @@
       ],
       "estado": "en-desarrollo",
       "plataformas": [
-        "Web"
+        "Web",
+        "Móvil"
       ],
       "generos": [
         "Rompecabezas",

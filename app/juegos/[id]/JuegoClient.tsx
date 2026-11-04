@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '../../components/LanguageSwitcher';
 import Caratula from '../../components/Caratula';
 import KofiButton from '../../components/KofiButton';
@@ -68,6 +68,10 @@ export default function JuegoClient({ juego }: { juego: Juego }) {
   const reproductor = useRef<HTMLDivElement>(null);
   const avances = avancesOrdenados(juego);
 
+  useEffect(() => {
+    if (jugando) reproductor.current?.scrollIntoView({ block: 'start' });
+  }, [jugando]);
+
   const pantallaCompleta = () => {
     setJugando(true);
     reproductor.current?.requestFullscreen?.();
@@ -103,7 +107,7 @@ export default function JuegoClient({ juego }: { juego: Juego }) {
             </div>
             <div
               ref={reproductor}
-              className="relative aspect-video w-full overflow-hidden rounded-3xl border border-[var(--ink-soft)] bg-black shadow-[0_35px_60px_-15px_rgba(34,23,18,0.45)]"
+              className="relative h-[calc(100dvh-7rem)] w-full scroll-mt-24 overflow-hidden rounded-3xl md:h-auto md:aspect-video border border-[var(--ink-soft)] bg-black shadow-[0_35px_60px_-15px_rgba(34,23,18,0.45)]"
             >
               <iframe
                 src={juego.url}
